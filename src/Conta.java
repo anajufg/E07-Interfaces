@@ -113,19 +113,19 @@ abstract class Conta implements ITaxas{
     public void imprimirExtratoTaxas() {
         double total = 0;
 
-        System.out.println("====== Extrato de Taxas Conta " + this.numero + " ======\n" +
-                           "Manutenção da conta: " + calculaTaxas() + "\n\n" +
-                           "OPERAÇÕES");
+        System.out.printf("====== Extrato de Taxas Conta " + this.numero + " ======\n" +
+                           "Manutenção da conta: %.2f \n\n" +
+                           "OPERAÇÕES\n", calculaTaxas());
         total += calculaTaxas();
         for(Operacao atual : this.operacoes) {
             if (atual != null) {
                 if(atual instanceof OperacaoSaque) {
-                    System.out.println("Saque: " + atual.calculaTaxas());
+                    System.out.printf("Saque: %.2f\n", atual.calculaTaxas());
                     total += atual.calculaTaxas();
                 }
             }
         }
-        System.out.println("\nTotal: " + total + "\n==========================================\n");
+        System.out.printf("\nTotal: %.2f \n==========================================\n", total);
     }
 
     public int getNumero() {
